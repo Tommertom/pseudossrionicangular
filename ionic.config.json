@@ -1,0 +1,7 @@
+{
+  "name": "vionicssr",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
