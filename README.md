@@ -12,8 +12,8 @@ So when the app installed as PWA (or fired as SPA) - we have instant action (FCP
 It will be easy to create logic that skips the static content if the app is in PWA mode. In which case we don't need SSR that much any more.
 
 Code to look at:
-- index.html
-- main.ts
+- src/index.html
+- src/main.ts
 
 
 Agree?
