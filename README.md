@@ -21,8 +21,6 @@ Under the hood, two "magical" things happening:
 * index.html is communicating with main.ts via the window object to boostrap the SPA - so no automatic bootstrap
 * index.html manually loads the service worker. Afterwards, angular picks up
 
-Here the repo - https://github.com/Tommertom/pseudossrionicangular
-
 And here the demo - https://oima-543bb.web.app
 
 All Ionic Angular folks out there - any thoughts on this experiment?
