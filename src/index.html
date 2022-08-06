@@ -55,7 +55,7 @@
     }
   </style>
 
-  <main id="__main_static">
+  <main id="__main_static" style="visibility: hidden;">
     <ul id="list-menu">
       <li><a href="#">Home</a></li>
       <li><a href="#">About Us</a></li>
@@ -65,7 +65,6 @@
     </ul>
 
     <p>
-
       The above links should/could other static content. Obviously, there must be exceptions in the rewrite rules of the
       server
       defined. And these routes should not interfere with the routes of the app.
@@ -81,24 +80,18 @@
   </main>
 
   <script>
-    const mainContent = document.getElementById('__main_static');
-    //  mainContent.style.visibility = 'hidden';
-
-    console.log('MAIN', mainContent);
-
     // let's get the service worker going pre-angular - but only when not in dev
     if ('serviceWorker' in navigator && !window.location.href.includes('localhost')) {
       navigator.serviceWorker.register('/ngsw-worker.js')
     }
 
-    // and are we SPA - then we boot
-    const isPWA = (win) =>
-      !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
-    if (isPWA(window)) window['bootAngularSPA']();
-
-    // if not, show static content
+    // and are we not SPA - then we show the static content
+    const isPWA = (win) => !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
+    // the maincontent is hidden by default (SEO ISSUE?) because in PWA mode it shows at startup
+    const mainContent = document.getElementById('__main_static');
     if (!isPWA(window)) mainContent.style.visibility = 'visible';
 
+    // and the magical hook bringing us the SPA
     const bootApp = () => {
       mainContent.style.visibility = 'hidden';
       window['bootAngularSPA']();
@@ -107,10 +100,6 @@
 
 
   <noscript>Please enable JavaScript to continue using this application.</noscript>
-
-
-
-
 
 </body>
 
