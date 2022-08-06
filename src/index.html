@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="hydrated">
 
 <head>
   <meta charset="utf-8" />
@@ -8,7 +8,8 @@
   <base href="/" />
 
   <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
 
@@ -17,10 +18,100 @@
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
 </head>
 
 <body>
   <app-root></app-root>
+
+  <style>
+    ul#list-menu {
+      margin: 20px;
+      padding: 0;
+      list-style: none;
+      width: 150px;
+    }
+
+    ul#list-menu li a {
+      text-decoration: none;
+      display: block;
+      padding: 5px;
+      width: 140px;
+      background: #485e49;
+      color: #eee
+    }
+
+    button {
+      background-color: #4CAF50;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+  </style>
+
+  <main id="__main_static">
+    <ul id="list-menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <p>
+
+      The above links should/could other static content. Obviously, there must be exceptions in the rewrite rules of the
+      server
+      defined. And these routes should not interfere with the routes of the app.
+    </p>
+    <p>
+      Alternatively, you can use base-href to define a different location for the routes..
+    </p>
+    <p> All sorts of content can come here, explaining the great app. And that you can or even should install it to go
+      on
+      with it. And that the button below creates all the magic you need.
+    </p>
+    <button type="button" onclick="bootApp();">Boot app</button>
+  </main>
+
+  <script>
+    const mainContent = document.getElementById('__main_static');
+    //  mainContent.style.visibility = 'hidden';
+
+    console.log('MAIN', mainContent);
+
+    // let's get the service worker going pre-angular - but only when not in dev
+    if ('serviceWorker' in navigator && !window.location.href.includes('localhost')) {
+      navigator.serviceWorker.register('/ngsw-worker.js')
+    }
+
+    // and are we SPA - then we boot
+    const isPWA = (win) =>
+      !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
+    if (isPWA(window)) window['bootAngularSPA']();
+
+    // if not, show static content
+    if (!isPWA(window)) mainContent.style.visibility = 'visible';
+
+    const bootApp = () => {
+      mainContent.style.visibility = 'hidden';
+      window['bootAngularSPA']();
+    }
+  </script>
+
+
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+
+
+
+
+
 </body>
 
 </html>
