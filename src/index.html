@@ -26,20 +26,14 @@
   <app-root></app-root>
 
   <style>
-    ul#list-menu {
-      margin: 20px;
+    ul {
+      list-style-type: none;
+      margin: 0;
       padding: 0;
-      list-style: none;
-      width: 150px;
     }
 
-    ul#list-menu li a {
-      text-decoration: none;
-      display: block;
-      padding: 5px;
-      width: 140px;
-      background: #485e49;
-      color: #eee
+    li {
+      display: inline;
     }
 
     button {
@@ -55,20 +49,17 @@
     }
   </style>
 
-  <main id="__main_static" style="visibility: hidden;">
-    <ul id="list-menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Products</a></li>
-      <li><a href="#">Contact</a></li>
+  <main id="__main_static" style="visibility: hidden;" class="inner-scroll scroll-y ion-page hydrated">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
     </ul>
-
+    <button type="button" onclick="bootApp();">Let's go to app</button>
     <p>
       The above links should/could show other static content. Obviously, there must be exceptions in the rewrite rules
-      of the
-      server
-      defined. And these routes should not interfere with the routes of the app.
+      of the server defined. And these routes should not interfere with the routes of the app.
     </p>
     <p>
       Alternatively, you can use base-href to define a different location for the routes..
@@ -92,16 +83,15 @@
       Please note - there is no automatic service worker update routing in the code. So if you want to check for a new
       version of this app - please unregister the service worker in devtools.
     </p>
-    <button type="button" onclick="bootApp();">Boot app</button>
+    <button type="button" onclick="bootApp();">Let's go to app</button>
+
+    <p>
+      One issue (probably more) - no scrollbar for vertical scrolling??
+    </p>
   </main>
 
   <script>
-    // let's get the service worker going pre-angular - but only when not in dev
-    if ('serviceWorker' in navigator && !window.location.href.includes('localhost')) {
-      navigator.serviceWorker.register('/ngsw-worker.js')
-    }
-
-    // and are we not SPA - then we show the static content
+    // Are we not SPA - then we show the static content
     const isPWA = (win) => !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
     // the maincontent is hidden by default (SEO ISSUE?) because in PWA mode it shows at startup
     const mainContent = document.getElementById('__main_static');
@@ -112,6 +102,12 @@
       mainContent.style.visibility = 'hidden';
       window['bootAngularSPA']();
     }
+
+    // let's get the service worker going pre-angular - but only when not in dev
+    if ('serviceWorker' in navigator && !window.location.href.includes('localhost')) {
+      navigator.serviceWorker.register('/ngsw-worker.js')
+    }
+
   </script>
 
 

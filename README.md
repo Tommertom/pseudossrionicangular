@@ -31,6 +31,8 @@ Code to look at:
 
 And here the demo - https://oima-543bb.web.app
 
+One issue (probably more) - no scrollbar for vertical scrolling??
+
 Agree?
 
 (also on Ionic forum - https://forum.ionicframework.com/t/pseudo-ssr-for-ionic-angular-is-this-a-realistic-alternative/225757)
