@@ -26,13 +26,12 @@ And here the demo - https://oima-543bb.web.app
 All Ionic Angular folks out there - any thoughts on this experiment?
 
 Code to look at:
-- src/index.html
+- src/index.html (including class='hydrated' in html!!)
 - src/main.ts
 
 And here the demo - https://oima-543bb.web.app
 
-One issue (probably more) - no scrollbar for vertical scrolling??
-
 Agree?
 
 (also on Ionic forum - https://forum.ionicframework.com/t/pseudo-ssr-for-ionic-angular-is-this-a-realistic-alternative/225757)
+

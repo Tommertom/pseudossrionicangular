@@ -33,3 +33,4 @@ if (!isPWA(window)) {
   // eslint-disable-next-line @typescript-eslint/dot-notation
   window['bootAngularSPA'] = bootFunction;
 }
+
