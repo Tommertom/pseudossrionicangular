@@ -22,7 +22,7 @@
   <meta name="theme-color" content="#1976d2">
 </head>
 
-<body>
+<body id="__body">
   <app-root></app-root>
 
   <style>
@@ -47,9 +47,13 @@
       display: inline-block;
       font-size: 16px;
     }
+
+    .main_stuff {
+      overflow: scroll !important;
+    }
   </style>
 
-  <main id="__main_static" style="visibility: hidden;" class="inner-scroll scroll-y ion-page hydrated">
+  <main id="__main_static" style="visibility: hidden;" class="main_stuff">
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#news">News</a></li>
@@ -91,6 +95,27 @@
   </main>
 
   <script>
+
+    // we need to override somes styles on body - NOT WORKING
+    const element = document.getElementById('__body');
+    console.log('asdsadasdasdsasdasdasds', element)
+
+    console.log('asdasdasds22', element.style.position, element.style.overflow)
+
+    element.style.backgroundColor = 'red'; // this is working
+    element.style.position = 'initial';
+    element.style.overflow = 'visible';
+    // element.style.removeProperty('position');
+    // element.style.removeProperty('overflow');
+
+    setTimeout(() => {
+      element.style.removeProperty('position');
+      element.style.removeProperty('overflow');
+
+    }, 4000)
+
+    console.log('asdasdasds3e3', element.style.position, element.style.overflow)
+
     // Are we not SPA - then we show the static content
     const isPWA = (win) => !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
     // the maincontent is hidden by default (SEO ISSUE?) because in PWA mode it shows at startup
