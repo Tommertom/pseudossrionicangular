@@ -60,7 +60,7 @@
       <li><a href="#contact">Contact</a></li>
       <li><a href="#about">About</a></li>
     </ul>
-    <button type="button" onclick="bootApp();">Let's go to app</button>
+
     <p>
       The above links should/could show other static content. Obviously, there must be exceptions in the rewrite rules
       of the server defined. And these routes should not interfere with the routes of the app.
@@ -88,37 +88,16 @@
       version of this app - please unregister the service worker in devtools.
     </p>
     <button type="button" onclick="bootApp();">Let's go to app</button>
-
-    <p>
-      One issue (probably more) - no scrollbar for vertical scrolling??
-    </p>
   </main>
 
   <script>
-
-    // we need to override somes styles on body - NOT WORKING
+    // we need to override somes styles on body - introduced by linked css as well as inline css
     const element = document.getElementById('__body');
-    console.log('asdsadasdasdsasdasdasds', element)
-
-    console.log('asdasdasds22', element.style.position, element.style.overflow)
-
-    //  element.style.backgroundColor = 'red'; // this is working
     element.style.position = 'initial';
     element.style.overflow = 'visible';
-    // element.style.removeProperty('position');
-    // element.style.removeProperty('overflow');
 
-    setTimeout(() => {
-      //  element.style.removeProperty('position');
-      //  element.style.removeProperty('overflow');
-
-    }, 4000)
-
-    console.log('asdasdasds3e3', element.style.position, element.style.overflow)
-
-    // Are we not SPA - then we show the static content
-    const isPWA = (win) => !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
     // the maincontent is hidden by default (SEO ISSUE?) because in PWA mode it shows at startup
+    const isPWA = (win) => !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
     const mainContent = document.getElementById('__main_static');
     if (!isPWA(window)) mainContent.style.visibility = 'visible';
 
@@ -127,12 +106,6 @@
       mainContent.style.visibility = 'hidden';
       window['bootAngularSPA']();
     }
-
-    // let's get the service worker going pre-angular - but only when not in dev
-    if ('serviceWorker' in navigator && !window.location.href.includes('localhost')) {
-      navigator.serviceWorker.register('/ngsw-worker.js')
-    }
-
   </script>
 
 

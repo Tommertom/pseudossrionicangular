@@ -6,11 +6,15 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+
+  // let's get the service worker going pre-angular boot
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/ngsw-worker.js')
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/dot-notation
 const bootFunction = () => {
-
   platformBrowserDynamic().bootstrapModule(AppModule)
     .catch(err => console.log(err));
 };
@@ -28,6 +32,3 @@ if (!isPWA(window)) {
   // eslint-disable-next-line @typescript-eslint/dot-notation
   window['bootAngularSPA'] = bootFunction;
 }
-
-// eslint-disable-next-line @typescript-eslint/dot-notation
-console.log('asdasdadasdsssssssssa', window['bootAngularSPA'], window);
