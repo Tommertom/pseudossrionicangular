@@ -31,7 +31,18 @@ Code to look at:
 
 And here the demo - https://oima-543bb.web.app
 
-Agree?
+Lighthouse scores using mid-tier setting. Comparing "Pseudo SSR" and SPA, gives 10 points better score for "Pseudo SSR"
+
+"Pseudo SSR"
+![Pseudo SSR](https://github.com/Tommertom/pseudossrionicangular/raw/main/src/assets/mid-tier-pseudo-ssr.png)
+
+"SPA"
+![SPA](https://github.com/Tommertom/pseudossrionicangular/raw/main/src/assets/mid-tier-SPA.png)
+
+
+Agree there is benefit in this approach? Happy to hear your comments in issues.
+
+https://github.com/Tommertom/pseudossrionicangular/issues
 
 (also on Ionic forum - https://forum.ionicframework.com/t/pseudo-ssr-for-ionic-angular-is-this-a-realistic-alternative/225757)
 
