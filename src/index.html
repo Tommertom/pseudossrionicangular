@@ -25,6 +25,15 @@
 <body id="__body">
   <app-root></app-root>
 
+  <!-- the below styling is needed to override Ionic's CSS stuff - otherwise we can't scroll -->
+  <style>
+    body {
+      position: initial;
+      overflow: initial;
+    }
+  </style>
+
+  <!-- this styling is specific to the app-->
   <style>
     ul {
       list-style-type: none;
@@ -47,13 +56,9 @@
       display: inline-block;
       font-size: 16px;
     }
-
-    .main_stuff {
-      overflow: scroll !important;
-    }
   </style>
 
-  <main id="__main_static" style="visibility: hidden;" class="main_stuff">
+  <main style="visibility: hidden;" id="__main_static">
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#news">News</a></li>
@@ -92,9 +97,10 @@
 
   <script>
     // we need to override somes styles on body - introduced by linked css as well as inline css
-    const element = document.getElementById('__body');
-    element.style.position = 'initial';
-    element.style.overflow = 'visible';
+    // EDIT: this code is kept here for potential debugging later on
+    // const element = document.getElementById('__body');
+    // element.style.position = 'initial';
+    //   element.style.overflow = 'visible';
 
     // the maincontent is hidden by default (SEO ISSUE?) because in PWA mode it shows at startup
     const isPWA = (win) => !!(win.matchMedia?.('(display-mode: standalone)').matches || (win.navigator).standalone);
