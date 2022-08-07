@@ -9,7 +9,7 @@ if (environment.production) {
 
   // let's get the service worker going pre-angular boot
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/ngsw-worker.js')
+    navigator.serviceWorker.register('/ngsw-worker.js');
   }
 }
 
